@@ -4,9 +4,7 @@ import {
   Post,
   Body,
   Patch,
-  Param,
   Delete,
-  ParseIntPipe,
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
@@ -31,26 +29,26 @@ export class UsersController {
   @Get('me')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  async findOne(@UserParam('id') id: number) {
+  async me(@UserParam('id') id: number) {
     const user = await this.usersService.findOne(id);
     return new UserEntity(user);
   }
 
-  @Patch(':id')
+  @Patch('me')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   async update(
-    @Param('id', ParseIntPipe) id: number,
+    @UserParam('id') id: number,
     @Body() updateUserDto: UpdateUserDto,
   ) {
     const user = await this.usersService.update(id, updateUserDto);
     return new UserEntity(user);
   }
 
-  @Delete(':id')
+  @Delete('me')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  async delete(@Param('id', ParseIntPipe) id: number) {
+  async delete(@UserParam('id') id: number) {
     const user = await this.usersService.delete(id);
     return new UserEntity(user);
   }

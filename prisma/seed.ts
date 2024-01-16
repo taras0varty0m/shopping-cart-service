@@ -6,16 +6,29 @@ async function main() {
   await prisma.user.createMany({
     data: [
       {
+        id: 1,
         email: 'qwe@qwe.qwe',
         name: 'qwe',
         passwordHash:
           '$2b$10$oHw55w2M4BeXK4FDtIMRx.tds/GQ8XOAXTQCKPlLOH5nWd4vlBNnC',
       },
       {
+        id: 2,
         email: 'ewq@ewq.ewq',
         name: 'ewq',
         passwordHash:
           '$2b$10$oHw55w2M4BeXK4FDtIMRx.tds/GQ8XOAXTQCKPlLOH5nWd4vlBNnC',
+      },
+    ],
+  });
+
+  await prisma.cart.createMany({
+    data: [
+      {
+        userId: 1,
+      },
+      {
+        userId: 2,
       },
     ],
   });
