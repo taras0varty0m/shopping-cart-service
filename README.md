@@ -1,20 +1,20 @@
-## Installation
+The first launch
 
 ```bash
+# installation
 $ npm install
-```
 
-## Running the app
+# env
+cp .env.example .env
 
-```bash
 # docker-compose
 $ docker-compose up -d
 
 # migrations & seed
 $ npx prisma migrate dev
 
-# development
-$ npm run start
+# app
+$ npm run start:dev
 ```
 
 Access the project at http://localhost:3000/api
